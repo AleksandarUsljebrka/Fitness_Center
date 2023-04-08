@@ -1,4 +1,4 @@
-                                                               Information System for Fitness Centers
+                                                    Information System for Fitness Centers
                                                          
 This project is the implementation of a web application for an information system that allows for the management of fitness centers. The application uses three user roles: Visitor, Trainer, and Owner. The application handles the following entities:
 
