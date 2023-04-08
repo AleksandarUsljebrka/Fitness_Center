@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "SpisakPosetilaca";
+    Layout = null;
+}
+<head>
+
+    <style>
+        h1 {
+            text-align: center;
+            font-family: 'Arial Rounded MT';
+        }
+        .table {
+            width: 100%;
+            margin-bottom: 20px;
+            border: 1px solid;
+        }
+
+        th {
+            background-color: indianred;
+            border: 1px solid;
+            padding: 4px;
+        }
+
+        td {
+            background-color: darksalmon;
+            border: 1px solid;
+            padding: 4px;
+        }
+
+        body {
+            background-color: bisque;
+        }
+    </style>
+</head>
+<h1>Spisak Posetilaca</h1>
+
+
+<table class="table">
+    
+    <tr>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Pol</th>
+        <th>Email</th>
+        <th>Datum rodjenja</th>
+        
+    
+
+
+    </tr>
+    @foreach (var item in ViewBag.posetioci)
+    {
+        <tr>
+            <td>@item.Ime</td>
+            <td>@item.Prezime</td>
+            <td>@item.Pol</td>
+            <td>@item.Email</td>
+            <td>@item.DatumRodjenja</td>
+        
+            
+
+        </tr>
+    }
+    <tr>
+        <th colspan="6">
+            <form action="~/Trener/Istorija">
+                <input type="submit" value="Nazad" />
+            </form>
+        </th>
+    </tr>
+</table>

@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "ModifikujTrening";
+    Layout = null;
+}
+<head>
+    <style>
+        h1 {
+            text-align: center;
+            font-family: 'Arial Rounded MT';
+        }
+        body {
+            background-color: bisque;
+            text-align: center;
+        }
+        th {
+            background-color: indianred;
+            border: 1px solid;
+            padding: 4px;
+        }
+
+        td {
+            background-color: darksalmon;
+            border: 1px solid;
+            padding: 4px;
+        }
+        .table {
+            width: 50%;
+            margin-bottom: 20px;
+            border: 1px solid;
+        }
+    </style>
+
+</head>
+<h1>@ViewBag.trening.Naziv</h1>
+<div>
+    <form action="~/Trener/SacuvajIzmeneTreninga" method="post">
+        <table class="table">
+            <tr>
+                <th colspan="2">Izmena treninga</th>
+            </tr>
+            <tr>
+                <td>Naziv treninga:</td>
+                <td><input input class="input" type="text" name="naziv" value="@ViewBag.trening.Naziv" /></td>
+            </tr>
+            <tr>
+                <td>Tip:</td>
+                <td>
+                    <select name="vrstaTreninga">
+                        <option value="@ViewBag.trening.VrstaTreninga">SELECT</option>
+                        @foreach (var item in ViewBag.treninzi)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Trajanje:</td>
+                <td><input class="input" type="number" name="trajanjeTreninga" value="@ViewBag.trening.TrajanjeTreninga"/></td>
+            </tr>
+            <tr>
+                <td>Vreme treninga:</td>
+                <td><input class="input" type="datetime" name="vremeTreninga"value="@ViewBag.trening.VremeTreninga" /></td>
+            </tr>
+            <tr>
+                <td>Maksimalan kapacitet:</td>
+                <td><input input class="input" type="number" name="maxPosetilaca" value="@ViewBag.trening.MaxPosetilaca"/></td>
+            </tr>
+
+
+
+            <tr>
+                <td colspan="2">
+                    <input class="input" type="hidden" value="@ViewBag.trening.TrenutnoPosetilaca" name="trenutnoPosetilaca" />
+                    <input type="hidden" value="@ViewBag.trening.TreningId" name="treningId" />
+                    <input type="hidden" value="@ViewBag.trening.CentarId" name="centarId" />
+                    <input class="btn" type="submit" value="Izmeni" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

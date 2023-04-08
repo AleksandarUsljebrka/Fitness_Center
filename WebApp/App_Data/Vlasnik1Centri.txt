@@ -1,0 +1,2 @@
+aFitnesCentar;Rakovacka;5;Beograd;11000;2010;Vlasnik1;2000;22000;250;200;1000
+cFitnesCentar;Temerinska;95;Novi Sad;21000;2014;Vlasnik1;2000;23000;300;200;1200

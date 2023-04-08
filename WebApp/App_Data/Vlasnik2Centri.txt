@@ -1,0 +1,2 @@
+tFitnesCentar;Sutjeska;2;Novi Sad;21000;2012;Vlasnik2;2500;29000;500;1200;1900
+gFitnesCentar;Sutjeska;2;Novi Sad;21000;2018;Vlasnik2;2700;30000;600;1800;2500

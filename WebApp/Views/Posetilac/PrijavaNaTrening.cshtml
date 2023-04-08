@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "PrijavaNaTrening";
+    Layout = null;
+}
+<head>
+    <style>
+      
+        body {
+            background-color: bisque;
+            text-align:center;
+        }
+        h1{
+            text-align:center;
+            font-family:'Arial Rounded MT';
+        }
+        
+    </style>
+</head>
+@if(ViewBag.flag == 1)
+{
+    <h1>Uspesno ste se prijavili za trening @ViewBag.trening.Naziv</h1>
+}
+else
+{
+    <h1>@ViewBag.poruka</h1>
+}
+<form action="~/Home/Index">
+    <input type="submit" value="Pocetna" />
+</form>
+

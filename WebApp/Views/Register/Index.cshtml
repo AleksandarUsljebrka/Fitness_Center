@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+
+}
+<head>
+    <style>
+        .div {
+            background-color: #333;
+            overflow: hidden;
+            height: 10%;
+        }
+        .active {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            background-color: red;
+        }
+        .inn {
+        float: left;
+        color: red;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        }
+        .input {
+            width: 100%;
+        }
+        .div inn:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .table {
+            width: 50%;
+            margin-bottom: 20px;
+            border: 1px solid;
+            align-content:center;
+        }
+
+        th {
+            background-color: indianred;
+            border: 1px solid;
+            padding: 4px;
+        }
+
+        td {
+            background-color: darksalmon;
+            border: 1px solid;
+            padding: 4px;
+        }
+
+        body {
+            background-color: bisque;
+        }
+        .btn{
+            width:38%;
+            
+        }
+        .dugme{
+            align-content:center;
+        }
+    </style>
+</head>
+<div class="div">
+    <div>
+        <form action="~/Home/Index">
+            <input class="inn" type="submit" value="Home" />
+        </form>
+    </div>
+    <div>
+        <form action="~/Register/Registruj">
+            <input class="inn" type="submit" value="Registruj se" />
+        </form>
+    </div>
+    <div>
+        <form action="~/Register/Index">
+            <input class="active" type="submit" value="Uloguj se" />
+        </form>
+    </div>
+</div>
+<div>
+    @ViewBag.Message
+</div>
+
+<h3>Ulogujte se</h3>
+<form action="~/Register/Uloguj" method="post">
+    <table class="table">
+        <tr>
+            <td>Korisnicko ime:</td>
+            <td><input input class="input" type="text" name="korisnickoime" /></td>
+        </tr>
+        <tr>
+            <td>Lozinka:</td>
+            <td><input input class="input" type="password" name="lozinka" /></td>
+        </tr>
+        <tr >
+            <td  colspan="2">
+                <input input class="btn" type="submit" value="Uloguj se" />
+            </td>
+        </tr>
+    </table>
+</form>
+

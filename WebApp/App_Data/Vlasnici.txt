@@ -1,0 +1,2 @@
+Vlasnik1;lozinka1;Ime1;Prezime1;M;vlasnik1@gmail.com;12/11/1970;VLASNIK;aFitnesCentar, cFitnesCentar
+Vlasnik2;lozinka2;Ime2;Prezime2;Z;vlasnik2@gmail.com;10/06/1994;VLASNIK;tFitnesCentar, gFitnesCentar

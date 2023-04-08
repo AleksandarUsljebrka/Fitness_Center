@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "DetaljnoTrener";
+    Layout = null; 
+}
+
+<head>
+    <style>
+
+        .table {
+            width: 100%;
+            margin-bottom: 20px;
+            border: 1px solid;
+        }
+
+        th {
+            background-color: indianred;
+            border: 1px solid;
+            padding: 4px;
+        }
+
+        td {
+            background-color: darksalmon;
+            border: 1px solid;
+            padding: 4px;
+        }
+
+        body {
+            background-color: bisque;
+        }
+    </style>
+    </head>
+    <h2>@ViewBag.trener.KorisnickoIme</h2>
+
+    <table id="myTable" class="table">
+        <tr>
+            <th>Korisnicko ime</th>
+            <th>Lozinka</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Pol</th>
+            <th>Email</th>
+            <th>Datum rodjenja</th>
+            <th>Fitnes centar</th>
+         
+        </tr>
+        <tr>
+            <td>@ViewBag.trener.KorisnickoIme</td>
+            <td>@ViewBag.trener.Lozinka</td>
+            <td>@ViewBag.trener.Ime</td>
+            <td>@ViewBag.trener.Prezime</td>
+            <td>
+                @if (Convert.ToString(ViewBag.trener.Pol).Equals("M"))
+                {
+                    <label>Muski</label>
+                }
+                else if (Convert.ToString(ViewBag.trener.Pol).Equals("Z"))
+                {
+                    <label>Zenski</label>
+                }
+            </td>
+            <td>@ViewBag.trener.Email</td>
+            <td>@Convert.ToString(ViewBag.trener.DatumRodjenja)</td>
+            <td>@ViewBag.trener.FitnesCentarId</td>
+            <!--td></!--td>
+            <td>
+                <form action="~/Vlasnik/ModifikujTrenera" method="post">
+                    <input type="submit" value="Modifikuj" />
+                    <input type="hidden" name="korisnickoIme" value="@ViewBag.trener.KorisnickoIme" />
+                </form>
+            </td-->
+        </tr>
+    </table>

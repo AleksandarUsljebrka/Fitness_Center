@@ -1,0 +1,189 @@
+﻿@using WebApp.Models
+@model IEnumerable<FitnesCentar>
+@{
+    ViewBag.Title = "Detalji";
+    Layout = null;
+
+}
+@{
+    var data = ViewBag.fitnesCentar;
+}
+<head>
+    <style>
+        .div {
+            background-color: #333;
+            overflow: hidden;
+            height: 10%;
+        }
+
+        .active {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            background-color: red;
+        }
+
+        .inn {
+            float: left;
+            color: red;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .div inn:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 20px;
+            border: 1px solid;
+        }
+
+        th {
+            background-color: indianred;
+            border: 1px solid;
+            padding: 4px;
+        }
+
+        td {
+            background-color: darksalmon;
+            border: 1px solid;
+            padding: 4px;
+        }
+
+        body {
+            background-color: bisque;
+        }
+    </style>
+    <script>
+
+        
+
+        function sortTable(n) {
+            var table,
+                rows,
+                switching,
+                i,
+                x,
+                y,
+                shouldSwitch,
+                dir,
+                switchcount = 0;
+            table = document.getElementById("myTable");
+            switching = true;
+            //Set the sorting direction to ascending:
+            dir = "asc";
+            /*Make a loop that will continue until
+            no switching has been done:*/
+            while (switching) {
+                //start by saying: no switching is done:
+                switching = false;
+                rows = table.getElementsByTagName("TR");
+                /*Loop through all table rows (except the
+                first, which contains table headers):*/
+                for (i = 1; i < rows.length - 1; i++) { //Change i=0 if you have the header th a separate table.
+                    //start by saying there should be no switching:
+                    shouldSwitch = false;
+                    /*Get the two elements you want to compare,
+                    one from current row and one from the next:*/
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    /*check if the two rows should switch place,
+                    based on the direction, asc or desc:*/
+                    if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            //if so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            //if so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    /*If a switch has been marked, make the switch
+                    and mark that a switch has been done:*/
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    //Each time a switch is done, increase this count by 1:
+                    switchcount++;
+                } else {
+                    /*If no switching has been done AND the direction is "asc",
+                    set the direction to "desc" and run the while loop again.*/
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+
+    </script>
+</head>
+
+<h2>Detalji</h2>
+<table id="myTable" class="table">
+    <tr>
+        <th>Naziv</th>
+        <th>Adresa centra</th>
+        <th>Godina otvaranja</th>
+        <th>Vlasnik</th>
+        <th>Cena mesecno</th>
+        <th>Cena godisnje</th>
+        <th>Cena jednog treninga</th>
+        <th>Cena jednog grupnog</th>
+        <th>Cena jednog trener</th>
+    </tr>
+    <tr>
+        <td>@data.Naziv</td>
+        <td>@data.AdresaCentra.ToString()</td>
+        <td>@data.GodinaOtvaranja</td>
+        <td>@data.KorisnickoIme</td>
+        <td>@data.CenaMesecno</td>
+        <td>@data.CenaGodisnje</td>
+        <td>@data.CenaJednogTreninga</td>
+        <td>@data.CenaJednogGrupnog</td>
+        <td>@data.CenaJednogTrener</td>
+    </tr>
+</table>
+<br /><br />
+<table class="table">
+    <tr>
+        <th colspan="7">Treninzi u ovom fitnes centru</th>
+    </tr>
+    <tr>
+        <th>Naziv treninga</th>
+        <th>Tip treninga</th>
+        <th>Trajanje</th>
+        <th>Datum i vreme treninga</th>
+        <th>Maksimalan kapacitet</th>
+        <th>Trenutno prijavljenih</th>
+       <th>Trener</th>
+       
+        
+    </tr>
+    @foreach(var item in ViewBag.treninzi)
+    {
+        <tr>
+            <td>@item.Naziv</td>
+            <td>@item.VrstaTreninga</td>
+            <td>@item.TrajanjeTreninga</td>
+            <td>@item.VremeTreninga</td>
+            <td>@item.MaxPosetilaca</td>
+            <td>@item.TrenutnoPosetilaca</td>
+            <td>@item.Trener</td>
+        </tr>
+    }
+</table>
+

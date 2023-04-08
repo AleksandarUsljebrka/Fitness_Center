@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "ModifikujTrenera";
+    Layout = null;
+}
+<head>
+    <style>
+        .div {
+            background-color: #333;
+            overflow: hidden;
+            height: 10%;
+        }
+
+        .active {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            background-color: red;
+        }
+
+        .inn {
+            float: left;
+            color: red;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .input {
+            width: 100%;
+        }
+
+        .div inn:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .table {
+            width: 50%;
+            margin-bottom: 20px;
+            border: 1px solid;
+        }
+
+        .btn {
+            width: 39%;
+        }
+
+        th {
+            background-color: indianred;
+            border: 1px solid;
+            padding: 4px;
+        }
+
+        td {
+            background-color: darksalmon;
+            border: 1px solid;
+            padding: 4px;
+        }
+
+        body {
+            background-color: bisque;
+        }
+
+        h2 {
+            color: red;
+            font-family: fantasy;
+        }
+    </style>
+</head>
+<h2>ModifikujTrenera</h2>
+
+<form action="~/Vlasnik/IzmeniTrenera" method="post">
+    <table class="table">
+        <tr>
+            <td>Korisnicko ime:</td>
+            <td><input input class="input" type="text" value="@ViewBag.trener.KorisnickoIme" name="korisnickoime" /></td>
+        </tr>
+        <tr>
+            <td>Lozinka:</td>
+            <td><input input class="input" value="@ViewBag.trener.Lozinka" type="password" name="lozinka" /></td>
+        </tr>
+        <tr>
+            <td>Ime:</td>
+            <td><input input class="input" type="text" value="@ViewBag.trener.Ime" name="ime" /></td>
+        </tr>
+        <tr>
+            <td>Prezime:</td>
+            <td><input class="input" type="text" value="@ViewBag.trener.Prezime" name="prezime" /></td>
+        </tr>
+        <tr>
+            <td>Pol:</td>
+            <td>
+                <label>Muski</label>
+                @if (Convert.ToString(ViewBag.trener.Pol).Equals("M"))
+                {
+                    <input type="radio" name="pol" value="M" checked="checked" />
+                }
+                else
+                {
+                    <input type="radio" name="pol" value="M" />
+
+                }
+                <label>Zenski</label>
+                @if (Convert.ToString(ViewBag.trener.Pol).Equals("Z"))
+                {
+                    <input type="radio" name="pol" value="Z" checked="checked" />
+                }
+                else
+                {
+                    <input type="radio" name="pol" value="Z" />
+
+                }
+            </td>
+
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input class="input" type="text" value="@ViewBag.trener.Email" name="email" /></td>
+        </tr>
+
+        <tr>
+            <td>Datum rodjenja:</td>
+            <td><input type="date" value="@ViewBag.godina-@ViewBag.mesec-@ViewBag.dan" name="datumrodjenja" /></td>
+        </tr>
+        <tr>
+            <td>Fitnes centar:</td>
+            <td>
+                <select name="fitnesCentarId">
+                    <option value="@ViewBag.trener.FitnesCentarId">@ViewBag.trener.FitnesCentarId</option>
+                    @foreach (var item in ViewBag.fitnesCentri)
+                    {
+                        <option value="@item.Id">@item.Id</option>
+                    }
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <input type="hidden" value="@ViewBag.trener.KorisnickoIme" name="korisnickoImeStaro"/>
+                <input class="btn" type="submit" value="Izmeni" />
+            </td>
+        </tr>
+    </table>
+</form>

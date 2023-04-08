@@ -1,0 +1,207 @@
+﻿
+@{
+    ViewBag.Title = "SpisakTreninga";
+    Layout = null;
+
+}
+<head>
+    <script>
+
+
+        function sortTable(n) {
+            var table,
+                rows,
+                switching,
+                i,
+                x,
+                y,
+                shouldSwitch,
+                dir,
+                switchcount = 0;
+            table = document.getElementById("myTable");
+            switching = true;
+            //Set the sorting direction to ascending:
+            dir = "asc";
+            /*Make a loop that will continue until
+            no switching has been done:*/
+            while (switching) {
+                //start by saying: no switching is done:
+                switching = false;
+                rows = table.getElementsByTagName("TR");
+                /*Loop through all table rows (except the
+                first, which contains table headers):*/
+                for (i = 1; i < rows.length - 1; i++) { //Change i=0 if you have the header th a separate table.
+                    //start by saying there should be no switching:
+                    shouldSwitch = false;
+                    /*Get the two elements you want to compare,
+                    one from current row and one from the next:*/
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    /*check if the two rows should switch place,
+                    based on the direction, asc or desc:*/
+                    if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            //if so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase({
+                            //if so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                            }
+                }
+                if (shouldSwitch) {
+                    /*If a switch has been marked, make the switch
+                    and mark that a switch has been done:*/
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    //Each time a switch is done, increase this count by 1:
+                    switchcount++;
+                } else {
+                    /*If no switching has been done AND the direction is "asc",
+                    set the direction to "desc" and run the while loop again.*/
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+
+    </script>
+    <style>
+        .table {
+            width: 100%;
+            margin-bottom: 20px;
+            border: 1px solid;
+        }
+
+        th {
+            background-color: indianred;
+            border: 1px solid;
+            padding: 4px;
+        }
+
+        td {
+            background-color: darksalmon;
+            border: 1px solid;
+            padding: 4px;
+        }
+
+        body {
+            background-color: bisque;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Arial Rounded MT';
+        }
+
+        .div inn:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .div {
+            background-color: #333;
+            overflow: hidden;
+            height: 10%;
+        }
+
+        .desni {
+            float: right;
+        }
+
+        .active {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            background-color: red;
+        }
+
+        .inn {
+            float: left;
+            color: red;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+    </style>
+</head>
+
+<div class="div">
+    <div>
+        <form action="~/Home/Index">
+            <input class="inn" type="submit" value="Home" />
+        </form>
+    </div>
+
+    <div>
+        <form action="~/Register/Izloguj">
+            <input class="inn" type="submit" value="Izloguj se" />
+        </form>
+    </div>
+    <div class="desni">
+        <form action="~/Posetilac/Profil">
+            <input class="inn" type="submit" value="Moj profil" />
+        </form>
+    </div>
+    <div>
+        <form action="~/Posetilac/SpisakTreninga">
+            <input class="active" type="submit" value="Istorija Treninga" />
+        </form>
+    </div>
+</div>
+
+<h1>Istorija Treninga</h1>
+
+
+<form method="post" action="~/Posetilac/Filter">
+    <label>Naziv treninga:</label>
+    <input type="text" name="naziv" />
+    <label>Tip treninga:</label>
+    <select name="tipTreninga">
+        <option value="@ViewBag.nonetip">SELECT</option>
+        @foreach (var item in @ViewBag.tipovi)
+        {
+            <option value="@item">@item</option>
+        }
+    </select>
+    <label>Naziv fitnes centra:</label>
+    <input type="text" name="nazivFitnesCentra" />
+
+    <input type="submit" value="Trazi" />
+</form>
+
+<table id="myTable" class="table">
+    <tr>
+        <th onclick="sortTable(0)">Naziv</th>
+        <th onclick="sortTable(1)">Tip</th>
+        <th>Fitnes centar</th>
+        <th>Trajanje</th>
+        <th onclick="sortTable(4)">Vreme</th>
+        <th>Kapacitet</th>
+        <th>Ukupno prijavljenih</th>
+    </tr>
+    @foreach (var item in ViewBag.treninzi)
+    {
+        <tr>
+            <td name="naziv">@item.Naziv</td>
+            <td name="vrstaTreninga">@item.VrstaTreninga</td>
+            <td name="centarId">@item.CentarId</td>
+            <td name="trajanjeTreninga">@item.TrajanjeTreninga</td>
+            <td name="vremeTreninga">@item.VremeTreninga</td>
+            <td name="maxPosetilaca">@item.MaxPosetilaca</td>
+            <td name="trenutnoPosetilaca">@item.TrenutnoPosetilaca</td>
+
+
+        </tr>
+    }
+</table>
